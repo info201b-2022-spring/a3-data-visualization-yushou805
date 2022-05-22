@@ -1,0 +1,47 @@
+---
+title: "Incarceration trends in the U.S. Report"
+author: "Joshua Chen"
+output: html_document
+date: '2022-05-20'
+---
+
+```{r setup, include=FALSE} 
+source("analysis.R")
+```
+
+```{r include=FALSE} 
+library("ggplot2")
+library("knitr")
+```
+
+## Introduction
+This report gives the readers an insight into the incarceration in five different race group, including Asian American and Pacific Islanders (AAPI), Black, Latinx, Native, and White. This report uses incarceration trends dataset collected by Vera Institute of Justice in 2018 to analyze five variables:  
+1. The highest total jail population among all race groups.  
+2. The highest jail proportion in a race's population nationwide.  
+3. The difference of this proportion compared to it ten years ago.  
+4. The state that has the highest jail population in 2018.  
+5. The county in that state that has the highest jail population in 2018.  
+
+## Summary Information
+To understand the stakeholders of the incarceration issue, this report sums the jail population in each counties in different race respectively to determine which race has the highest total jail population. It turns out that there are more **white** prisoners than any other race. In 2018, there were `r rounded_jail_pop` white prisoners in jail nationwide. This result may be caused by the dominant white population in the U.S. As a result, it is also important to know the jail proportion in a race so we can understand which race group is impacted most significantly. After dividing the jail population by total population from 15 to 64 years old, we get that **Black** people have `r rounded_jail_ratio` percent of total population going in the jail. Compared to same statistics 10 years ago, which was `r rounded_jail_ratio_2008` percent in 2008, the ratio has a `r ten_yr_compare` percent decrease. It may signify a rising awareness of the social injustice. Next, the report narrows down the scope to the state's level. According to the analysis, **`r highest_jail_pop_state`** is the state that has the highest jail population and **`r total_jail_pop_county`** is the county that has the highest jail population. Therefore, the report will focus on the incarceration in California and make chart to visualize the data.
+
+## Jail population ratio trends
+The purpose to include this chart is to understand the change of jail population ratio in California in ten years. From the chart we can tell that Black people has always held the highest jail population ratio. Native and Latinx respectively hold the second and the third place.
+
+```{r trends, echo=FALSE}
+plot(line_chart)
+```
+
+## Race Composition in jail 
+The purpose of this chart is to observe the race composition in the jail. Surprisingly, Latinx people accounts for almost half of the jail population in California.
+
+```{r component, echo=FALSE}
+plot(p1)
+```
+
+## Jail population map
+The purpose of this map is to reveal the distribution of jail population in California. This map matches with the previous analysis in summary that Los Angeles has the higheset number of jail population.
+
+```{r map, echo=FALSE}
+plot(black_jail_pop_map)
+```
